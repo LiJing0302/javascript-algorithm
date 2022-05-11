@@ -22,7 +22,6 @@ function makeListNode(arr){
     }
     return head
 }
-console.log(makeListNode([5]))
 module.exports = {
     ListNode,
     makeListNode
