@@ -11,5 +11,17 @@ function bubbleSort(arr){
     }
     return arr
 }
+
+// ==============================冒泡排序二刷===================================
+function bubbleSort(arr){
+    for(let j=0;j<arr.length-1;j++){
+        for(let i=0;i<arr.length-1-j;i++){
+            if(arr[i]>arr[i+1]){
+                [arr[i+1],arr[i]] = [arr[i],arr[i+1]]
+            }
+        }
+    }
+    return arr
+}
 console.log(bubbleSort([16,4,9,5,8,23,21,89]))
 //!平均时间时间复杂度：n^2  最坏时间复杂度n^2  空间复杂度O(1)  是稳定排序  

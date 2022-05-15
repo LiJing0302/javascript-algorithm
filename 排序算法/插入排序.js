@@ -26,4 +26,19 @@ function insertSort(arr){
     }
     return arr
 }
+
+//=================================插入排序二刷==================================
+function insertSort(arr){
+    for(let i = 1;i<arr.length;i++){
+        let j = i;
+        while(j-->=0){
+            if(arr[j]<arr[j-1]){
+                [arr[j-1],arr[j]] =[arr[j],arr[j-1]]
+            }else{
+                continue
+            }
+        }
+    }
+    return arr
+}
 console.log(insertSort([16,4,9,5,8,23,21,89]))

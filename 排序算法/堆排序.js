@@ -9,7 +9,7 @@
 
 四、堆的操作：
 1.下滤（树的根节点破坏了堆续性，大根堆为例，交换子节点中最大的元素）
-2.上虑（树的最后一个元素破坏了堆续性，大根堆为例，与父节点比较，若大于父节点则交换）
+2.上滤（树的最后一个元素破坏了堆续性，大根堆为例，与父节点比较，若大于父节点则交换）
         上滤：插入新元素到堆中，复杂度O(logn)
 五、乱序数组建堆方法：
     自顶向下建堆法：复杂度O(nlogn)
@@ -66,11 +66,46 @@ function adjustMaxHeep(arr, i, lenth) {
 }
 function heapSort(arr) {
     //堆排序
-    buildMaxHeap(arr)   //传入数组建立为大顶堆
+    buildMaxHeap(arr)   //传入数组建立为大顶堆  输出为：[ 7, 5, 6, 4,2, 1, 3 ]
     for (let i = arr.length - 1; i > 0; i--) {
         [arr[0], arr[i]] = [arr[i], arr[0]]
         adjustMaxHeep(arr, 0, i)
     }
     return arr
+}
+
+// =====================堆排序二刷================================================
+function heapSort(arr){
+//建堆
+buildMaxHeap(arr);
+console.log(arr);
+for(let i=arr.length-1;i>0;i--){
+    [arr[i],arr[0]] =[arr[0],arr[i]]
+    adjustMaxHeap(arr,0,i)
+}
+return arr
+}
+function buildMaxHeap(arr){
+    //自顶向下建堆
+    for(let i = Math.floor(arr.length/2)-1;i>=0;i--){
+        //下滤节点调整大顶堆
+        adjustMaxHeap(arr,i,arr.length)
+    }
+}
+function adjustMaxHeap(arr,i,length){
+    let left = 2*i+1
+    let right = 2*i+2
+    let largest = i
+    if(left<length&&arr[largest]<arr[left]){
+        largest = left
+    }
+    if(right<length&&arr[largest]<arr[right]){
+        largest = right
+    }
+    if(largest != i){
+        [arr[largest],arr[i]] = [arr[i],arr[largest]]
+        adjustMaxHeap(arr,largest,length)
+    }
+
 }
 console.log(heapSort([1, 2, 3, 4, 5, 6, 7]));

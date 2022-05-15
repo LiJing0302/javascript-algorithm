@@ -31,5 +31,30 @@ function merge(left,right){
     }
     return result
 }
-// mergeSort([16,4,9,5,8,23,21,89])
+
+//=======================================归并排序二刷======================================
+function mergeSort(arr){
+    if(arr.length==1) return arr
+    let halfLen = Math.floor(arr.length/2)
+    let left = arr.slice(0,halfLen)
+    let right = arr.slice(halfLen)
+    return merge(mergeSort(left),mergeSort(right))
+}
+function merge(left,right){
+    let result = []
+    while(left.length>0&&right.length>0){
+        if(left[0]<right[0]){
+            result.push(left.shift())
+        }else if(left[0]>right[0]){
+            result.push(right.shift())
+        }
+    }
+    while(left.length>0){
+        result.push(left.shift())
+    }
+    while(right.length>0){
+        result.push(right.shift())
+    }
+    return result
+}
 console.log(mergeSort([16,4,9,5,8,23,21,89]));
